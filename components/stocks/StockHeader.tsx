@@ -1,13 +1,13 @@
-import { productsHeaders } from "@/utils/data";
+import { stockHeaders } from "@/utils/data";
 
-const ProductsHeader = () => {
+const StockHeader = () => {
   return (
-    <ul className="grid min-h-13 grid-cols-7 gap-2 text-center font-medium">
-      {productsHeaders.map((header, i) =>
+    <ul className="grid min-h-13 grid-cols-5 gap-2 text-center font-medium">
+      {stockHeaders.map((header, i) =>
         header === "Name" ? (
           <li
             key={i}
-            className="bg-muted border-border col-span-3 flex items-center justify-center rounded-lg border p-1"
+            className="bg-muted border-border col-span-2 flex items-center justify-center rounded-lg border p-1"
           >
             {header}
           </li>
@@ -23,4 +23,4 @@ const ProductsHeader = () => {
     </ul>
   );
 };
-export default ProductsHeader;
+export default StockHeader;

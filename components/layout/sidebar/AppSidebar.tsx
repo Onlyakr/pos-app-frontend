@@ -13,7 +13,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
-const user = users[1];
+const user = users[0];
 
 const AppSidebar = () => {
   return (

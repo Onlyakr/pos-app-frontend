@@ -1,9 +1,9 @@
-import { productsHeaders } from "@/utils/data";
+import { promotionHeaders } from "@/utils/data";
 
-const ProductsHeader = () => {
+const PromotionHeader = () => {
   return (
     <ul className="grid min-h-13 grid-cols-7 gap-2 text-center font-medium">
-      {productsHeaders.map((header, i) =>
+      {promotionHeaders.map((header, i) =>
         header === "Name" ? (
           <li
             key={i}
@@ -23,4 +23,4 @@ const ProductsHeader = () => {
     </ul>
   );
 };
-export default ProductsHeader;
+export default PromotionHeader;

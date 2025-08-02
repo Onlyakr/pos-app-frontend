@@ -1,21 +1,19 @@
-import { Product, products } from "@/utils/data";
-import AdjustButton from "@/components/sales/AdjustButton";
+import { carts, CartProps } from "@/utils/data";
+import AdjustButton from "./AdjustButton";
 
 const CartList = () => {
   return (
     <div className="flex flex-col gap-1 overflow-auto">
-      {products.map((product: Product) => (
+      {carts.map((cart: CartProps) => (
         <ul
           className="border-border bg-muted grid min-h-12 grid-cols-7 gap-2 rounded-lg border p-1 text-center"
-          key={product.id}
+          key={cart.list}
         >
           <li className="col-span-4 flex items-center justify-center">
-            {product.name}
+            {cart.list}
           </li>
-          <li className="flex items-center justify-center">
-            {product.quantity}
-          </li>
-          <li className="flex items-center justify-center">{product.price}</li>
+          <li className="flex items-center justify-center">{cart.quantity}</li>
+          <li className="flex items-center justify-center">{cart.price}</li>
           <li className="flex items-center justify-center gap-2">
             <AdjustButton />
           </li>

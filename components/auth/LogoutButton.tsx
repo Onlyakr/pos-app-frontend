@@ -5,11 +5,7 @@ import { Button } from "../ui/button";
 
 const LogoutButton = () => {
   return (
-    <Button
-      onClick={logOutUser}
-      variant="outline"
-      className="hover:bg-destructive mt-1 w-25 hover:text-white"
-    >
+    <Button onClick={logOutUser} variant="destructive" className="mt-1 w-25">
       Logout
     </Button>
   );

@@ -1,7 +1,7 @@
-import CartFooter from "@/components/sales/CartFooter";
-import CartHeader from "@/components/sales/CartHeader";
-import CartList from "@/components/sales/CartList";
-import CartSummary from "@/components/sales/CartSummary";
+import CartFooter from "@/components/carts/CartFooter";
+import CartHeader from "@/components/carts/CartHeader";
+import CartList from "@/components/carts/CartList";
+import CartSummary from "@/components/carts/CartSummary";
 
 const Page = () => {
   return (

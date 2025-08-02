@@ -6,9 +6,9 @@ const SalesPage = () => {
   return (
     <div className="flex size-full flex-col items-center justify-center gap-5">
       <ShoppingBag size={150} />
-      <Link href="/sales/cart">
-        <Button className="w-42">Make Sale</Button>
-      </Link>
+      <Button className="w-42" asChild>
+        <Link href="/sales/carts">Make Sale</Link>
+      </Button>
     </div>
   );
 };
