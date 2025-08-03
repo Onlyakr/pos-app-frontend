@@ -1,4 +1,5 @@
 import { loginFormSchema } from "@/schemas/authSchema";
+import { cookies } from "next/headers";
 import { z } from "zod";
 
 export const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
@@ -22,10 +23,18 @@ export const logOutUser = async () => {
     method: "POST",
     credentials: "include",
   });
-  console.log(res);
-  // if (!res.ok) {
-  //   throw new Error("Logout failed");
-  // }
+  if (!res.ok) {
+    throw new Error("Logout failed");
+  }
   const data = await res.json();
   return data;
+};
+
+export const getToken = async () => {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("jwt")?.value;
+  if (!token) {
+    throw new Error("No token found");
+  }
+  return token;
 };
