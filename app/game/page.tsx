@@ -67,7 +67,9 @@ const TestPage = () => {
       )}
       <Button
         onClick={async () => {
-          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/`);
+          const res = await fetch(`http://192.168.50.196:3000/`);
+          const data = await res.json();
+          console.log(data);
         }}
       >
         Fetch
