@@ -10,8 +10,8 @@ export const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
     },
   );
 
-  // const data = await res.json();
-  return res;
+  const data = await res.json();
+  return data;
 };
 
 export const logOutUser = async () => {
