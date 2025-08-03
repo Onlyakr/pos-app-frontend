@@ -1,5 +1,3 @@
-"use server";
-
 import { loginFormSchema } from "@/schemas/authSchema";
 import { cookies } from "next/headers";
 import { z } from "zod";
