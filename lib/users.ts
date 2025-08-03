@@ -23,9 +23,10 @@ export const logOutUser = async () => {
     method: "POST",
     credentials: "include",
   });
-  if (!res.ok) {
-    throw new Error("Logout failed");
-  }
+  // if (!res.ok) {
+  //   throw new Error("Logout failed");
+  // }
+  console.log(res);
   const data = await res.json();
   return data;
 };
