@@ -10,7 +10,9 @@ export const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
     body: JSON.stringify(values),
     credentials: "include",
   });
-  console.log(res);
+  if (!res.ok) {
+    throw new Error("Login failed");
+  }
   const data = await res.json();
   return data;
 };
@@ -20,6 +22,9 @@ export const logOutUser = async () => {
     method: "POST",
     credentials: "include",
   });
+  if (!res.ok) {
+    throw new Error("Logout failed");
+  }
   const data = await res.json();
   return data;
 };
