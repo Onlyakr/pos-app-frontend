@@ -65,6 +65,13 @@ const TestPage = () => {
       {isCorrect && (
         <Image src="/meme2.gif" alt={value} className="object-contain" fill />
       )}
+      <Button
+        onClick={async () => {
+          await fetch(`${process.env.NEXT_PUBLIC_API_URL}/`);
+        }}
+      >
+        Fetch
+      </Button>
     </div>
   );
 };

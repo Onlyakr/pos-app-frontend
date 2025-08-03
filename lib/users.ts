@@ -6,7 +6,6 @@ export const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
     method: "POST",
     body: JSON.stringify(values),
   });
-
   const data = await res.json();
   return data;
 };
