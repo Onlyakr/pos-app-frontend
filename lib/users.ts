@@ -10,6 +10,7 @@ export const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
     body: JSON.stringify(values),
     credentials: "include",
   });
+  console.log(res);
   const data = await res.json();
   return data;
 };
