@@ -837,3 +837,6 @@ export const stocks: StockProps[] = [
     amount: 65,
   },
 ];
+
+// username : admin
+// password : bangOnlyNo1

@@ -9,8 +9,9 @@ export const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
       body: JSON.stringify(values),
     },
   );
-  const data = await res.json();
-  return data;
+
+  // const data = await res.json();
+  return res;
 };
 
 export const logOutUser = async () => {

@@ -4,7 +4,7 @@ import Link from "next/link";
 const PromotionButton = () => {
   return (
     <Button variant="outline" asChild>
-      <Link href="products/promotions">Promotions</Link>
+      <Link href="/products/promotions">Promotions</Link>
     </Button>
   );
 };
