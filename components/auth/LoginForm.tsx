@@ -39,6 +39,7 @@ export default function LoginForm() {
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
     try {
       const res = await loginUser(values);
+      console.log(res);
       if (res.status === 200) {
         toast.success("Login successful");
         router.push("/products");

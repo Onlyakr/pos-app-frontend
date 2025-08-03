@@ -8,6 +8,7 @@ export const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(values),
+    credentials: "include",
   });
   const data = await res.json();
   return data;
@@ -16,6 +17,7 @@ export const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
 export const logOutUser = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/logout`, {
     method: "POST",
+    credentials: "include",
   });
   const data = await res.json();
   return data;
