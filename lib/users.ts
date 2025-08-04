@@ -25,3 +25,12 @@ export const logOutUser = async () => {
   const data = await res.json();
   return data;
 };
+
+export const testRoleUser = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/manager`, {
+    method: "GET",
+    credentials: "include",
+  });
+  const data = await res.json();
+  return data;
+};

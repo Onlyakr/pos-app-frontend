@@ -9,6 +9,8 @@ import UserProfile from "./UserProfile";
 import logo from "@/public/logo.png";
 import PromotionButton from "@/components/promotions/PromotionButton";
 import HistoryButton from "@/components/carts/HistoryButton";
+import { Button } from "@/components/ui/button";
+import { testRoleUser } from "@/lib/users";
 
 const AppHeader = () => {
   const { open } = useSidebar();
@@ -35,6 +37,7 @@ const AppHeader = () => {
         <UserProfile />
         <ModeToggle />
       </div>
+      <Button onClick={() => testRoleUser()}>Test Manager</Button>
     </div>
   );
 };

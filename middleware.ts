@@ -6,6 +6,7 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get("jwt")?.value;
   const path = request.nextUrl.pathname;
 
+  console.log(token);
   // Login routes
   const isLoginRoute = path.startsWith("/login");
 
