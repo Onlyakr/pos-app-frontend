@@ -30,9 +30,9 @@ export function middleware(request: NextRequest) {
 
     const user = jwtDecode(token);
 
-    if (!user || user.role !== "manager") {
-      return NextResponse.redirect(new URL("/products", request.url));
-    }
+    // if (!user || user.role !== "manager") {
+    //   return NextResponse.redirect(new URL("/products", request.url));
+    // }
 
     return NextResponse.next();
   }
