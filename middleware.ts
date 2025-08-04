@@ -1,18 +1,19 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { jwtDecode } from "jwt-decode";
+import { decodeJwt } from "./utils/decodeJwt";
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("jwt")?.value;
   const path = request.nextUrl.pathname;
 
   console.log(token);
+
   // Login routes
   const isLoginRoute = path.startsWith("/login");
 
   if (isLoginRoute) {
     if (token) {
-      const user = jwtDecode(token);
+      const user = decodeJwt(token);
       if (user) {
         return NextResponse.redirect(new URL("/products", request.url));
       }
@@ -29,7 +30,7 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
 
-    const user = jwtDecode(token);
+    const user = decodeJwt(token);
 
     console.log(user);
     // if (!user || user?.role !== "manager") {
