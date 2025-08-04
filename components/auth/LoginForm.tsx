@@ -24,8 +24,12 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { loginFormSchema } from "@/schemas/authSchema";
 import { loginUser } from "@/lib/users";
+import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 export default function LoginForm() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
 
   const form = useForm<z.infer<typeof loginFormSchema>>({
@@ -37,13 +41,17 @@ export default function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
+    setIsLoading(true);
     try {
       const res = await loginUser(values);
+      console.log(res);
       toast.success("Login successful");
       router.push("/products");
     } catch (error) {
       console.error(error);
       toast.error(`Login failed`);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -102,8 +110,16 @@ export default function LoginForm() {
               <Button
                 type="submit"
                 className="bg-primary text-primary-foreground hover:bg-primary/90 w-full cursor-pointer"
+                disabled={isLoading}
               >
-                Login
+                {isLoading ? (
+                  <p className="flex items-center gap-2">
+                    <Loader2 className="size-4 animate-spin" />
+                    Logging in...
+                  </p>
+                ) : (
+                  "Login"
+                )}
               </Button>
             </form>
           </Form>

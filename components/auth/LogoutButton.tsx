@@ -11,6 +11,7 @@ const LogoutButton = () => {
   const handleLogOut = async () => {
     try {
       const res = await logOutUser();
+      console.log(res);
       toast.success("Logout successful");
       router.push("/");
     } catch (error) {
