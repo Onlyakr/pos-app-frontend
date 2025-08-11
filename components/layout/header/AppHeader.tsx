@@ -9,8 +9,8 @@ import UserProfile from "./UserProfile";
 import logo from "@/public/logo.png";
 import PromotionButton from "@/components/promotions/PromotionButton";
 import HistoryButton from "@/components/carts/HistoryButton";
-import { Button } from "@/components/ui/button";
-import { testRoleUser } from "@/lib/users";
+// import { Button } from "@/components/ui/button";
+// import { testRoleUser } from "@/lib/users";
 
 const AppHeader = () => {
   const { open } = useSidebar();
@@ -19,7 +19,7 @@ const AppHeader = () => {
   return (
     <div className="bg-background/30 sticky top-0 z-50 flex h-10 items-center justify-between gap-5 px-2 py-7 backdrop-blur-sm">
       <div
-        className={`flex-1 items-center justify-start gap-5 ${open ? "hidden" : "flex"}`}
+        className={`items-center justify-start gap-5 ${open ? "hidden" : "flex"}`}
       >
         <SidebarTrigger />
         <Image src={logo} alt="logo" width={50} height={50} />
@@ -37,7 +37,7 @@ const AppHeader = () => {
         <UserProfile />
         <ModeToggle />
       </div>
-      <Button onClick={() => testRoleUser()}>Test Manager</Button>
+      {/* <Button onClick={() => testRoleUser()}>Test Manager</Button> */}
     </div>
   );
 };

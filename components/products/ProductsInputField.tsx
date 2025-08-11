@@ -1,8 +1,6 @@
-"use client";
-
-import { Input } from "@/components/ui/input";
-import { Button } from "../ui/button";
 import { SearchIcon } from "lucide-react";
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
 
 const InputField = () => {
   return (

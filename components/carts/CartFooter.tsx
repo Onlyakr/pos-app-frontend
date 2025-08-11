@@ -15,7 +15,7 @@ const CartFooter = () => {
       <li className="col-span-2 mr-auto">
         <Button
           className="border-border bg-muted text-foreground border hover:bg-green-500"
-          onClick={() => redirect("cart/checkout")}
+          onClick={() => redirect("/sales/carts/checkout")}
         >
           <CircleCheck />
           Confirm

@@ -1,5 +1,5 @@
 import Categories from "@/components/products/Categories";
-import InputField from "@/components/products/InputField";
+import InputField from "@/components/products/ProductsInputField";
 
 const ProductsFilter = () => {
   return (
