@@ -38,7 +38,9 @@ const AppHeader = () => {
         <ModeToggle />
       </div>
 
-      <Button onClick={() => getAccessToken()}>Test Manager</Button>
+      <Button onClick={() => getAccessToken().then((res) => console.log(res))}>
+        Refresh Token
+      </Button>
     </div>
   );
 };

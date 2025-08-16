@@ -8,5 +8,8 @@ week 4 july
 week 1 august
     -พัฒนาระบบ products และ cart
 
-week 1 august
+week 2august
     -เพิ่มระบบ promotions, stocks, และ dashboard
+
+
+TODO: login , barcode หลัง Midterm

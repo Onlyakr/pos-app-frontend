@@ -13,7 +13,7 @@ const LogoutButton = () => {
       const res = await logOutUser();
       console.log(res);
       toast.success("Logout successful");
-      router.push("/");
+      router.push("/login");
     } catch (error) {
       console.error(error);
       toast.error("Logout failed");
