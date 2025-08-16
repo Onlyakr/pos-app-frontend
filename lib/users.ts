@@ -37,7 +37,7 @@ export const testRoleUser = async () => {
 
 export const getAccessToken = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/refresh`, {
-    method: "GET",
+    method: "POST",
     credentials: "include",
   });
   const data = await res.json();
