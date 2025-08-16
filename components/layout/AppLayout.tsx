@@ -14,7 +14,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
           {children}
 
           {/* Funny button */}
-          <Button
+          {/* <Button
             variant="destructive"
             className="absolute right-2 bottom-2 size-11"
             asChild
@@ -22,7 +22,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
             <Link href="/game">
               <Smile />
             </Link>
-          </Button>
+          </Button> */}
         </div>
       </main>
     </>

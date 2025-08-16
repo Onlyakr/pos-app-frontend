@@ -34,3 +34,12 @@ export const testRoleUser = async () => {
   const data = await res.json();
   return data;
 };
+
+export const getAccessToken = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/refresh`, {
+    method: "GET",
+    credentials: "include",
+  });
+  const data = await res.json();
+  return data;
+};
