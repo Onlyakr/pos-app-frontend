@@ -20,13 +20,16 @@ const PromotionFilter = () => {
         </Link>
       </Button>
 
-      <PromotionsInputField />
+      <div className="flex items-center gap-2">
+        <PromotionsInputField />
 
-      <DatePicker />
+        <DatePicker />
 
-      <Button variant="outline" type="submit" className="size-9 rounded-full">
-        <SearchIcon size={18} />
-      </Button>
+        <Button variant="outline" type="submit" className="size-9 rounded-full">
+          <SearchIcon size={18} />
+        </Button>
+      </div>
+
       <AddPromotionButton />
     </div>
   );

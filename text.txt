@@ -1,0 +1,12 @@
+week 3 july 
+    -วาง layout ในแต่ละหน้า
+
+week 4 july
+    -ทำหน้่า authentication
+    -กำหนดสิทธิ์การเข้าถึงในแต่ละหน้า
+
+week 1 august
+    -พัฒนาระบบ products และ cart
+
+week 1 august
+    -เพิ่มระบบ promotions, stocks, และ dashboard
