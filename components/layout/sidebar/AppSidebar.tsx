@@ -17,11 +17,15 @@ const user = users[0];
 
 const AppSidebar = () => {
   return (
-    <Sidebar variant="floating" collapsible="offcanvas" className="border-none">
+    <Sidebar
+      variant="floating"
+      collapsible="offcanvas"
+      className="border-none pr-0"
+    >
       <SidebarHeader className="relative my-3 items-center gap-2">
         <Logo />
         <SidebarTrigger className="absolute top-0 right-2" />
-        <Role />
+        {/* <Role /> */}
       </SidebarHeader>
 
       <SidebarSeparator />

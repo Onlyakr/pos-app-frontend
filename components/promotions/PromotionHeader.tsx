@@ -2,7 +2,7 @@ import { promotionHeaders } from "@/utils/data";
 
 const PromotionHeader = () => {
   return (
-    <ul className="grid min-h-13 grid-cols-7 gap-2 text-center font-medium">
+    <ul className="grid min-h-11 grid-cols-7 gap-1 text-center font-medium">
       {promotionHeaders.map((header, i) =>
         header === "Name" ? (
           <li

@@ -8,7 +8,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <AppSidebar />
-      <main className="flex h-screen flex-1 flex-col p-2 pl-0">
+      <main className="flex h-screen flex-1 flex-col p-2">
         <AppHeader />
         <div className="bg-card border-border relative flex h-1/2 flex-1 items-start justify-center rounded-lg border p-2 shadow-md">
           {children}

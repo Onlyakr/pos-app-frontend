@@ -44,7 +44,7 @@ const DatePicker = () => {
           id="date"
           value={value}
           name="date"
-          className="bg-background pr-10"
+          className="pr-10"
           onChange={(e) => {
             const date = new Date(e.target.value);
             setValue(e.target.value);

@@ -9,7 +9,7 @@ import UserProfile from "./UserProfile";
 import logo from "@/public/logo.png";
 import PromotionButton from "@/components/promotions/PromotionButton";
 import HistoryButton from "@/components/carts/HistoryButton";
-import { getAccessToken } from "@/lib/users";
+import { getAccessToken, testRoleUser } from "@/lib/users";
 import { Button } from "@/components/ui/button";
 
 const AppHeader = () => {
@@ -31,16 +31,22 @@ const AppHeader = () => {
         <Path />
       </div>
 
-      <div className="flex flex-1 items-center justify-end gap-5">
+      <div className="flex items-center justify-end gap-5">
         {pathname.split("/")[1] === "products" && <PromotionButton />}
-        {pathname.split("/")[1] === "sales" && <HistoryButton />}
-        <UserProfile />
+        {pathname.split("/")[1] === "sales" && !pathname.split("/")[2] && (
+          <HistoryButton />
+        )}
+        {/* <UserProfile /> */}
         <ModeToggle />
       </div>
 
-      <Button onClick={() => getAccessToken().then((res) => console.log(res))}>
+      {/* <Button onClick={() => getAccessToken().then((res) => console.log(res))}>
         Refresh Token
-      </Button>
+      </Button> */}
+
+      {/* <Button onClick={() => testRoleUser().then((res) => console.log(res))}>
+        Test Role
+      </Button> */}
     </div>
   );
 };

@@ -9,7 +9,7 @@ export async function middleware(request: NextRequest) {
   // const token = cookieStore.get("accessToken")?.value;
   const path = request.nextUrl.pathname;
 
-  console.log(cookieStore);
+  // console.log(cookieStore);
 
   if (token) {
     const user = decodeJwt(token);

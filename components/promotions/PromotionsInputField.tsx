@@ -3,7 +3,7 @@ import { Input } from "../ui/input";
 
 const PromotionsInputField = () => {
   return (
-    <div className="relative flex items-center">
+    <div className="relative flex flex-1 items-center">
       <SearchIcon size={18} className="absolute top-2 left-2" />
       <Input
         type="text"

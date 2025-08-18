@@ -1,6 +1,6 @@
 const CartSummary = () => {
   return (
-    <ul className="grid grid-cols-7 gap-2 text-center">
+    <ul className="grid grid-cols-7 gap-1 text-center">
       <li className="bg-muted border-border col-span-4 rounded-lg border p-2">
         Total
       </li>

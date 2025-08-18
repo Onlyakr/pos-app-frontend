@@ -2,7 +2,7 @@ import { stockHeaders } from "@/utils/data";
 
 const StockHeader = () => {
   return (
-    <ul className="grid min-h-13 grid-cols-5 gap-2 text-center font-medium">
+    <ul className="grid min-h-11 grid-cols-5 gap-1 text-center font-medium">
       {stockHeaders.map((header, i) =>
         header === "Name" ? (
           <li

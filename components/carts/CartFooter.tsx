@@ -29,7 +29,7 @@ const CartFooter = () => {
   }, [barcode]);
 
   return (
-    <ul className="grid h-15 grid-cols-8 items-center justify-center gap-2">
+    <ul className="grid h-15 grid-cols-8 items-center justify-center gap-1">
       <li className="bg-muted border-border col-span-2 flex items-center justify-center rounded-md border text-center">
         <Input
           type="text"
@@ -40,8 +40,8 @@ const CartFooter = () => {
       </li>
       <li className="col-span-2 mr-auto">
         <Button
-          className="border-border bg-muted text-foreground border hover:bg-green-500"
-          onClick={() => redirect("/sales/carts/checkout")}
+          className="border-border bg-muted text-foreground border hover:bg-green-500/90"
+          onClick={() => redirect("/carts/checkout")}
         >
           <CircleCheck />
           Confirm
@@ -49,7 +49,7 @@ const CartFooter = () => {
       </li>
       <li className="col-span-2 ml-auto">
         <Button
-          className="border-border bg-muted text-foreground hover:bg-destructive border"
+          className="border-border bg-muted text-foreground border hover:bg-red-500"
           onClick={() => redirect("/sales")}
         >
           <CircleX />

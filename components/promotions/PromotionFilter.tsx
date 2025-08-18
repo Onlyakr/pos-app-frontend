@@ -10,7 +10,7 @@ import PromotionsInputField from "./PromotionsInputField";
 
 const PromotionFilter = () => {
   return (
-    <div className="flex items-center justify-between gap-2">
+    <div className="flex items-center justify-between gap-4">
       <Button
         className="bg-card text-foreground border-border hover:text-card size-9 rounded-full border transition-colors"
         asChild
@@ -20,7 +20,7 @@ const PromotionFilter = () => {
         </Link>
       </Button>
 
-      <div className="flex items-center gap-2">
+      <div className="flex flex-1 items-center justify-center gap-2">
         <PromotionsInputField />
 
         <DatePicker />

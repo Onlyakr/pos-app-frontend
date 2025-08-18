@@ -10,9 +10,9 @@ export const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
     body: JSON.stringify(values),
     credentials: "include",
   });
-  if (res.status !== 200) {
-    throw new Error("Login failed");
-  }
+  // if (!res.ok) {
+  //   throw new Error("Login failed");
+  // }
   const data = await res.json();
   return data;
 };

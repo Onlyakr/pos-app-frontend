@@ -2,7 +2,7 @@ import { cartHeaders } from "@/utils/data";
 
 const CartHeader = () => {
   return (
-    <ul className="grid min-h-13 grid-cols-7 gap-2 text-center">
+    <ul className="grid min-h-11 grid-cols-7 gap-1 text-center">
       {cartHeaders.map((header, i) =>
         header === "List" ? (
           <li

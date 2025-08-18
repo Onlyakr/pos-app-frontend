@@ -1,15 +1,15 @@
-import PromotionFilter from "@/components/promotions/PromotionFilter";
-import PromotionHeader from "@/components/promotions/PromotionHeader";
-import PromotionList from "@/components/promotions/PromotionList";
+import HistoryFilter from "@/components/history/HistoryFilter";
+import HistoryHeader from "@/components/history/HistoryHeader";
+import HistoryList from "@/components/history/HistoryList";
 
 const PromotionsPage = () => {
   return (
     <div className="flex size-full flex-col gap-3 font-medium">
-      <PromotionFilter />
+      <HistoryFilter />
 
       <div className="flex flex-col gap-2 overflow-auto text-sm">
-        <PromotionHeader />
-        <PromotionList />
+        <HistoryHeader />
+        <HistoryList />
       </div>
     </div>
   );
