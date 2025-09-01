@@ -9,9 +9,10 @@ import UserProfile from "./UserProfile";
 import logo from "@/public/main.png";
 import PromotionButton from "@/components/promotions/PromotionButton";
 import HistoryButton from "@/components/carts/HistoryButton";
-// import { getAccessToken, testRoleUser } from "@/lib/users";
 import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
+import LogoutButton from "@/components/auth/LogoutButton";
+import { getAccessToken } from "@/lib/users";
 
 const AppHeader = () => {
   const { open } = useSidebar();
@@ -41,9 +42,11 @@ const AppHeader = () => {
         <ModeToggle />
       </div>
 
-      {/* <Button onClick={() => getAccessToken().then((res) => console.log(res))}>
+      <Button onClick={() => getAccessToken().then((res) => console.log(res))}>
         Refresh Token
-      </Button> */}
+      </Button>
+
+      <LogoutButton />
 
       {/* <Button onClick={() => testRoleUser().then((res) => console.log(res))}>
         Test Role

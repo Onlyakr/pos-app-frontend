@@ -17,7 +17,7 @@ export default function POSScanner() {
     if (!barcode) return;
     try {
       // adjust your API route to match your backend
-      const res = await fetch(`/api/products/${encodeURIComponent(barcode)}`);
+      const res = await fetch(`/api/products/${barcode}`);
       if (!res.ok) throw new Error("Not found");
       const product = await res.json();
       setItems((prev) => [...prev, product]);
@@ -33,6 +33,8 @@ export default function POSScanner() {
       const barcode = (e.target as HTMLInputElement).value.trim();
       if (barcode) {
         fetchProduct(barcode);
+        console.log(barcode);
+        // setItems((prev) => [...prev, barcode]);
       }
       (e.target as HTMLInputElement).value = ""; // clear for next scan
     }
@@ -53,7 +55,8 @@ export default function POSScanner() {
       <ul className="space-y-2">
         {items.map((item, idx) => (
           <li key={idx} className="rounded border p-2">
-            {item.title ?? item.name ?? "Unknown product"} — {item.price ?? ""}
+            {item}
+            {/* {item.title ?? item.name ?? "Unknown product"} — {item.price ?? ""} */}
           </li>
         ))}
       </ul>
