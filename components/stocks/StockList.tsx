@@ -10,6 +10,7 @@ import {
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { MinusIcon, PlusIcon, Trash2Icon } from "lucide-react";
 
 const StockList = () => {
   return (
@@ -47,13 +48,21 @@ const StockList = () => {
                       className="bg-card"
                     />
                   </div>
-                  <div className="flex gap-2">
-                    <Button variant="destructive" className="flex-1">
-                      Delete
+                  <div className="flex items-center gap-10">
+                    <Button variant="destructive">
+                      <Trash2Icon className="size-4" />
+                      Delete Product
                     </Button>
-                    <Button variant="default" className="flex-1">
-                      Save
-                    </Button>
+                    <div className="flex flex-1 justify-end gap-2">
+                      <Button variant="default" className="w-1/2">
+                        <PlusIcon className="size-4" />
+                        Add
+                      </Button>
+                      <Button variant="default" className="w-1/2">
+                        <MinusIcon className="size-4" />
+                        Decrease
+                      </Button>
+                    </div>
                   </div>
                 </DialogDescription>
               </DialogHeader>

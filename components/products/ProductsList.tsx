@@ -1,10 +1,16 @@
-import { ProductProps, products } from "@/utils/data";
+"use client";
+
+// import getProducts from "@/lib/products";
 import Link from "next/link";
 
+// import { ProductProps } from "@/utils/data";
+
 const ProductsList = () => {
+  // const { products } = await getProducts();
+
   return (
     <div className="flex flex-col gap-1 overflow-auto">
-      {products.map((product: ProductProps) => (
+      {/* {products.map((product: ProductProps) => (
         <Link key={product.id} href={`/products/${product.id}`}>
           <ul className="grid min-h-10 grid-cols-7 gap-1 text-center font-medium">
             <li className="bg-muted border-border flex items-center justify-center rounded-lg border p-1">
@@ -24,7 +30,7 @@ const ProductsList = () => {
             </li>
           </ul>
         </Link>
-      ))}
+      ))} */}
     </div>
   );
 };

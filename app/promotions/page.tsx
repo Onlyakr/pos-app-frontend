@@ -9,7 +9,7 @@ const PromotionsPage = () => {
 
       <div className="flex flex-col gap-2 overflow-auto text-sm">
         <PromotionHeader />
-        <PromotionList />
+        {/* <PromotionList /> */}
       </div>
     </div>
   );

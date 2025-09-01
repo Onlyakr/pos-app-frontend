@@ -6,11 +6,12 @@ import { ModeToggle } from "./ModeToggle";
 import Path from "./Path";
 import Image from "next/image";
 import UserProfile from "./UserProfile";
-import logo from "@/public/logo.png";
+import logo from "@/public/main.png";
 import PromotionButton from "@/components/promotions/PromotionButton";
 import HistoryButton from "@/components/carts/HistoryButton";
-import { getAccessToken, testRoleUser } from "@/lib/users";
+// import { getAccessToken, testRoleUser } from "@/lib/users";
 import { Button } from "@/components/ui/button";
+import Logo from "@/components/Logo";
 
 const AppHeader = () => {
   const { open } = useSidebar();
@@ -22,7 +23,7 @@ const AppHeader = () => {
         className={`items-center justify-start gap-5 ${open ? "hidden" : "flex"}`}
       >
         <SidebarTrigger />
-        <Image src={logo} alt="logo" width={50} height={50} />
+        <Logo width={50} height={50} />
       </div>
 
       <div

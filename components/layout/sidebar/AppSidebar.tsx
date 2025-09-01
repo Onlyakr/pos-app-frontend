@@ -4,6 +4,8 @@ import CashierMenu from "./CashierMenu";
 import ManagerMenu from "./ManagerMenu";
 
 import { users } from "@/utils/data";
+import { userInfo } from "@/lib/users";
+
 import {
   Sidebar,
   SidebarContent,
@@ -13,9 +15,9 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 
-const user = users[0];
-
-const AppSidebar = () => {
+const AppSidebar = async () => {
+  // const user = await userInfo();
+  const user = users[0];
   return (
     <Sidebar
       variant="floating"
@@ -23,7 +25,12 @@ const AppSidebar = () => {
       className="border-none pr-0"
     >
       <SidebarHeader className="relative my-3 items-center gap-2">
-        <Logo />
+        <div className="flex flex-col items-center gap-2">
+          <Logo />
+          <span className="text-foreground hidden text-lg font-medium md:block">
+            Moonlight Books
+          </span>
+        </div>
         <SidebarTrigger className="absolute top-0 right-2" />
         {/* <Role /> */}
       </SidebarHeader>

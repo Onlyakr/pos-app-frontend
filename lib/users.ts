@@ -10,9 +10,6 @@ export const loginUser = async (values: z.infer<typeof loginFormSchema>) => {
     body: JSON.stringify(values),
     credentials: "include",
   });
-  // if (!res.ok) {
-  //   throw new Error("Login failed");
-  // }
   const data = await res.json();
   return data;
 };
@@ -26,8 +23,8 @@ export const logOutUser = async () => {
   return data;
 };
 
-export const testRoleUser = async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/manager`, {
+export const userInfo = async () => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/me`, {
     method: "GET",
     credentials: "include",
   });

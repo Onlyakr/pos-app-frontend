@@ -12,10 +12,15 @@ const Logo = ({
 }) => {
   return (
     <div className={`flex flex-col items-center gap-2 ${className}`}>
-      <Image src={logo} alt="logo" width={width} height={height} />
-      <span className="text-foreground hidden text-lg font-medium md:block">
+      <Image
+        src={logo}
+        alt="Moonlight Books Logo"
+        width={width}
+        height={height}
+      />
+      {/* <span className="text-foreground hidden text-lg font-medium md:block">
         Moonlight Books
-      </span>
+      </span> */}
     </div>
   );
 };
