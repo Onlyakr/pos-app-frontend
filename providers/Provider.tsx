@@ -1,5 +1,6 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ThemeProvider } from "./theme-provider";
+import ReactQueryProvider from "./ReactQueryProvider";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -9,7 +10,9 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
       enableSystem
       disableTransitionOnChange
     >
-      <SidebarProvider>{children}</SidebarProvider>
+      <ReactQueryProvider>
+        <SidebarProvider>{children}</SidebarProvider>
+      </ReactQueryProvider>
     </ThemeProvider>
   );
 };

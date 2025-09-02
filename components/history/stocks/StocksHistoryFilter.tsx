@@ -1,27 +1,34 @@
 "use client";
 
 import { CircleArrowLeft, SearchIcon } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 
 import Link from "next/link";
-import AddPromotionButton from "./AddPromotionButton";
-import DatePicker from "./DatePicker";
-import PromotionsInputField from "./PromotionsInputField";
+import DatePicker from "@/components/promotions/DatePicker";
+import { Input } from "@/components/ui/input";
 
-const PromotionFilter = () => {
+const StocksHistoryFilter = () => {
   return (
     <div className="flex items-center justify-between gap-4">
       <Button
         className="bg-card text-foreground border-border hover:text-card size-9 rounded-full border transition-colors"
         asChild
       >
-        <Link href="/products">
+        <Link href="/stocks">
           <CircleArrowLeft />
         </Link>
       </Button>
 
       <div className="flex flex-1 items-center justify-center gap-2">
-        <PromotionsInputField />
+        <div className="relative flex flex-1 items-center">
+          <SearchIcon size={18} className="absolute top-2 left-2" />
+          <Input
+            type="text"
+            placeholder="Product Name"
+            name="name"
+            className="pl-8"
+          />
+        </div>
 
         <DatePicker />
 
@@ -29,9 +36,7 @@ const PromotionFilter = () => {
           <SearchIcon size={18} />
         </Button>
       </div>
-
-      <AddPromotionButton />
     </div>
   );
 };
-export default PromotionFilter;
+export default StocksHistoryFilter;

@@ -20,10 +20,12 @@ export interface UserProps {
 
 export interface ProductProps {
   id: string;
-  category: string;
   name: string;
-  quantity: number;
+  author: string;
   price: number;
+  barcode: string;
+  quantity: number;
+  category: "Anime" | "Self-development" | "Finance" | "Education";
 }
 
 export interface PromotionProps {
@@ -42,9 +44,10 @@ export interface CartProps {
 }
 
 export interface StockProps {
+  id: string;
   date: string;
   name: string;
-  amount: number;
+  quantity: number;
 }
 
 export const users: UserProps[] = [

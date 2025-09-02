@@ -1,10 +1,9 @@
+"use client";
+
 import Logo from "@/components/Logo";
-import Role from "./Role";
 import CashierMenu from "./CashierMenu";
 import ManagerMenu from "./ManagerMenu";
-
-import { users } from "@/utils/data";
-import { userInfo } from "@/lib/users";
+import Role from "./Role";
 
 import {
   Sidebar,
@@ -14,10 +13,28 @@ import {
   SidebarSeparator,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { getManager } from "@/lib/users";
+import { useEffect, useState } from "react";
 
-const AppSidebar = async () => {
-  // const user = await userInfo();
-  const user = users[0];
+const AppSidebar = () => {
+  const [isManager, setIsManager] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchManager = async () => {
+      try {
+        setIsLoading(true);
+        const res = await getManager();
+        setIsManager(res.status === 200);
+      } catch (error) {
+        console.error("Failed to fetch manager");
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchManager();
+  }, []);
+
   return (
     <Sidebar
       variant="floating"
@@ -32,15 +49,14 @@ const AppSidebar = async () => {
           </span>
         </div>
         <SidebarTrigger className="absolute top-0 right-2" />
-        {/* <Role /> */}
+        <Role isManager={isManager} />
       </SidebarHeader>
 
       <SidebarSeparator />
 
       <SidebarContent className="mt-3">
         <SidebarGroup className="flex grow flex-col gap-10">
-          {user.role === "cashier" && <CashierMenu />}
-          {user.role === "manager" && <ManagerMenu />}
+          {isManager ? <ManagerMenu /> : <CashierMenu />}
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>

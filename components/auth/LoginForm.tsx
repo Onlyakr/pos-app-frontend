@@ -43,12 +43,12 @@ export default function LoginForm() {
   async function onSubmit(values: z.infer<typeof loginFormSchema>) {
     setIsLoading(true);
     try {
-      const res = await loginUser(values);
-      console.log(res);
+      await loginUser(values);
       toast.success("Login successful");
       router.push("/products");
     } catch (error) {
-      console.error(error);
+      const e = error as Error;
+      console.error("Login failed: ", e.message);
       toast.error(`Login failed`);
     } finally {
       setIsLoading(false);

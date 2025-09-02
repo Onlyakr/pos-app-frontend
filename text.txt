@@ -13,3 +13,8 @@ week 2august
 
 
 TODO: login , barcode หลัง Midterm
+
+stock history : increase สีเขียว
+                decrease สีแดง
+
+TODO (2/9): products filter,add products, stock list

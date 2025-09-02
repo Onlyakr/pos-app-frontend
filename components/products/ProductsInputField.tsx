@@ -8,7 +8,7 @@ const InputField = () => {
       <Button variant="outline" type="submit">
         <SearchIcon size="icon" />
       </Button>
-      <Input type="text" placeholder="Search here..." />
+      <Input type="text" placeholder="Search here..." name="search" />
     </form>
   );
 };

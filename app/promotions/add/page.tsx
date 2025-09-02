@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { CircleCheck, CircleX, X } from "lucide-react";
+import { CircleCheck, CircleX } from "lucide-react";
+
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 const AddPromotionPage = () => {
   return (
     <div className="container mx-auto flex h-full flex-col items-center justify-center gap-5 p-5">
-      {/* <h1 className="self-start">Add Promotion</h1> */}
       <form className="flex flex-col gap-5">
         <div className="flex gap-10">
           <div className="flex w-1/2 flex-col gap-2">

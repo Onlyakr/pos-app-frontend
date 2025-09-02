@@ -32,9 +32,9 @@ export default function POSScanner() {
       e.preventDefault();
       const barcode = (e.target as HTMLInputElement).value.trim();
       if (barcode) {
-        fetchProduct(barcode);
+        // fetchProduct(barcode);
         console.log(barcode);
-        // setItems((prev) => [...prev, barcode]);
+        setItems((prev) => [...prev, barcode]);
       }
       (e.target as HTMLInputElement).value = ""; // clear for next scan
     }

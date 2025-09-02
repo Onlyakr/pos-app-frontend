@@ -3,16 +3,15 @@
 import { SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "./ModeToggle";
+import { Button } from "@/components/ui/button";
+import { getAccessToken, getManager } from "@/lib/users";
+
 import Path from "./Path";
-import Image from "next/image";
-import UserProfile from "./UserProfile";
-import logo from "@/public/main.png";
 import PromotionButton from "@/components/promotions/PromotionButton";
 import HistoryButton from "@/components/carts/HistoryButton";
-import { Button } from "@/components/ui/button";
 import Logo from "@/components/Logo";
 import LogoutButton from "@/components/auth/LogoutButton";
-import { getAccessToken } from "@/lib/users";
+import GetAccessButton from "@/components/auth/GetAccessButton";
 
 const AppHeader = () => {
   const { open } = useSidebar();
@@ -38,19 +37,19 @@ const AppHeader = () => {
         {pathname.split("/")[1] === "sales" && !pathname.split("/")[2] && (
           <HistoryButton />
         )}
-        {/* <UserProfile /> */}
+
         <ModeToggle />
       </div>
 
-      <Button onClick={() => getAccessToken().then((res) => console.log(res))}>
-        Refresh Token
-      </Button>
+      {/* <GetAccessButton /> */}
+
+      {/* <Button
+        onClick={() => getManager().then((res) => console.log(res.status))}
+      >
+        Manager
+      </Button> */}
 
       <LogoutButton />
-
-      {/* <Button onClick={() => testRoleUser().then((res) => console.log(res))}>
-        Test Role
-      </Button> */}
     </div>
   );
 };

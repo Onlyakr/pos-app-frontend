@@ -1,11 +1,7 @@
-import { users } from "@/utils/data";
-
-const user = users[1];
-
-const Role = () => {
+const Role = ({ isManager }: { isManager: boolean }) => {
   return (
     <span className="text-muted-foreground text-sm">
-      {user.name} - {user.role === "cashier" ? "cashier" : "manager"}
+      {isManager ? "Manager" : "Cashier"}
     </span>
   );
 };
