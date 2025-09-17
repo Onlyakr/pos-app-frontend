@@ -23,7 +23,7 @@ const ProductsList = async ({ products }: { products: ProductProps[] }) => {
               {product.quantity}
             </li>
             <li className="bg-muted border-border flex items-center justify-center rounded-lg border p-1">
-              {product.price}
+              {product.price}฿
             </li>
           </ul>
         </Link>

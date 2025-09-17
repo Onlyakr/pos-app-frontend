@@ -1,5 +1,4 @@
 import Image from "next/image";
-import logo from "@/public/logo.png";
 
 const Logo = ({
   width = 80,
@@ -13,14 +12,12 @@ const Logo = ({
   return (
     <div className={`flex flex-col items-center gap-2 ${className}`}>
       <Image
-        src={logo}
+        src="/logo.png"
         alt="Moonlight Books Logo"
+        priority={true}
         width={width}
         height={height}
       />
-      {/* <span className="text-foreground hidden text-lg font-medium md:block">
-        Moonlight Books
-      </span> */}
     </div>
   );
 };

@@ -19,22 +19,25 @@ export interface UserProps {
 }
 
 export interface ProductProps {
-  id: string;
+  id?: string;
   name: string;
   author: string;
   price: number;
-  barcode: string;
-  quantity: number;
-  category: "Anime" | "Self-development" | "Finance" | "Education";
+  barcode?: string;
+  quantity?: number;
+  category?: "Anime" | "Self-development" | "Finance" | "Education";
+  detail?: string;
 }
 
 export interface PromotionProps {
-  id: string;
+  name?: string;
+  product: string;
   startDate: string;
   endDate: string;
-  name: string;
-  discount: number;
-  amount: number;
+  discountValue: number;
+  discountType: "PERCENT" | "FIXED";
+  quota?: number;
+  remainingQuota?: number;
 }
 
 export interface CartProps {
@@ -44,10 +47,12 @@ export interface CartProps {
 }
 
 export interface StockProps {
-  id: string;
-  date: string;
+  id?: string;
   name: string;
+  transactionDate: string;
+  product: string;
   quantity: number;
+  transactionType: "increase" | "decrease";
 }
 
 export const users: UserProps[] = [
@@ -68,149 +73,6 @@ export const users: UserProps[] = [
 ];
 
 export const productsHeaders = ["ID", "Category", "Name", "Quantity", "Price"];
-
-export const products: ProductProps[] = [
-  {
-    id: "book1",
-    name: "Attack on Titan Vol. 1",
-    quantity: 45,
-    price: 12.99,
-    category: "Anime",
-  },
-  {
-    id: "book2",
-    name: "My Hero Academia Vol. 5",
-    quantity: 38,
-    price: 10.99,
-    category: "Anime",
-  },
-  {
-    id: "book3",
-    name: "Demon Slayer Vol. 10",
-    quantity: 55,
-    price: 11.5,
-    category: "Anime",
-  },
-  {
-    id: "book4",
-    name: "Jujutsu Kaisen Vol. 3",
-    quantity: 40,
-    price: 12.0,
-    category: "Anime",
-  },
-  {
-    id: "book5",
-    name: "Naruto Vol. 72",
-    quantity: 30,
-    price: 9.99,
-    category: "Anime",
-  },
-  {
-    id: "book6",
-    name: "Atomic Habits",
-    quantity: 70,
-    price: 15.99,
-    category: "Self",
-  },
-  {
-    id: "book7",
-    name: "The 7 Habits of Highly Effective People",
-    quantity: 60,
-    price: 14.5,
-    category: "Self",
-  },
-  {
-    id: "book8",
-    name: "Mindset: The New Psychology of Success",
-    quantity: 50,
-    price: 13.0,
-    category: "Self",
-  },
-  {
-    id: "book9",
-    name: "Self Development by Jarn Bank",
-    quantity: 45,
-    price: 16.25,
-    category: "Self",
-  },
-  {
-    id: "book010",
-    name: "The Power of Habit",
-    quantity: 55,
-    price: 12.75,
-    category: "Self",
-  },
-  {
-    id: "book011",
-    name: "Rich Dad Poor Dad",
-    quantity: 80,
-    price: 18.99,
-    category: "Finance",
-  },
-  {
-    id: "book012",
-    name: "The Intelligent Investor",
-    quantity: 35,
-    price: 22.0,
-    category: "Finance",
-  },
-  {
-    id: "book013",
-    name: "Your Money or Your Life",
-    quantity: 40,
-    price: 17.5,
-    category: "Finance",
-  },
-  {
-    id: "book014",
-    name: "Think and Grow Rich",
-    quantity: 65,
-    price: 11.99,
-    category: "Finance",
-  },
-  {
-    id: "book015",
-    name: "The Total Money Makeover",
-    quantity: 50,
-    price: 14.0,
-    category: "Finance",
-  },
-  {
-    id: "book016",
-    name: "Calculus: Early Transcendentals",
-    quantity: 25,
-    price: 85.0,
-    category: "Education",
-  },
-  {
-    id: "book017",
-    name: "Introduction to Algorithms",
-    quantity: 20,
-    price: 75.0,
-    category: "Education",
-  },
-  {
-    id: "book018",
-    name: "Organic Chemistry",
-    quantity: 18,
-    price: 95.0,
-    category: "Education",
-  },
-  {
-    id: "book019",
-    name: "Linear Algebra Done Right",
-    quantity: 30,
-    price: 60.0,
-    category: "Education",
-  },
-  {
-    id: "book020",
-    name: "Economics: Principles, Problems, and Policies",
-    quantity: 22,
-    price: 70.0,
-    category: "Education",
-  },
-];
 
 export const cashierMenuItems: MenuItemProps[] = [
   {
@@ -253,7 +115,7 @@ export const promotionHeaders = [
   "End Date",
   "Name",
   "Discount",
-  "Amount",
+  "Quota",
 ];
 
 export const promotions = [
@@ -686,160 +548,4 @@ export const carts: CartProps[] = [
   },
 ];
 
-export const stockHeaders = ["Date", "Name", "Amount"];
-
-export const stocks: StockProps[] = [
-  {
-    date: "2025-07-28",
-    name: "Product A",
-    amount: 150,
-  },
-  {
-    date: "2025-07-28",
-    name: "Product B",
-    amount: 75,
-  },
-  {
-    date: "2025-07-29",
-    name: "Product C",
-    amount: 300,
-  },
-  {
-    date: "2025-07-29",
-    name: "Product D",
-    amount: 45,
-  },
-  {
-    date: "2025-07-30",
-    name: "Product E",
-    amount: 180,
-  },
-  {
-    date: "2025-07-30",
-    name: "Product F",
-    amount: 90,
-  },
-  {
-    date: "2025-07-31",
-    name: "Product G",
-    amount: 500,
-  },
-  {
-    date: "2025-07-31",
-    name: "Product H",
-    amount: 220,
-  },
-  {
-    date: "2025-08-01",
-    name: "Product I",
-    amount: 60,
-  },
-  {
-    date: "2025-08-01",
-    name: "Product J",
-    amount: 250,
-  },
-  {
-    date: "2025-08-02",
-    name: "Product K",
-    amount: 85,
-  },
-  {
-    date: "2025-08-02",
-    name: "Product L",
-    amount: 320,
-  },
-  {
-    date: "2025-08-03",
-    name: "Product M",
-    amount: 110,
-  },
-  {
-    date: "2025-08-03",
-    name: "Product N",
-    amount: 200,
-  },
-  {
-    date: "2025-08-04",
-    name: "Product O",
-    amount: 35,
-  },
-  {
-    date: "2025-08-04",
-    name: "Product P",
-    amount: 130,
-  },
-  {
-    date: "2025-08-05",
-    name: "Product Q",
-    amount: 160,
-  },
-  {
-    date: "2025-08-05",
-    name: "Product R",
-    amount: 25,
-  },
-  {
-    date: "2025-08-06",
-    name: "Product S",
-    amount: 280,
-  },
-  {
-    date: "2025-08-06",
-    name: "Product T",
-    amount: 50,
-  },
-  {
-    date: "2025-08-07",
-    name: "Product U",
-    amount: 190,
-  },
-  {
-    date: "2025-08-07",
-    name: "Product V",
-    amount: 70,
-  },
-  {
-    date: "2025-08-08",
-    name: "Product W",
-    amount: 240,
-  },
-  {
-    date: "2025-08-08",
-    name: "Product X",
-    amount: 100,
-  },
-  {
-    date: "2025-08-09",
-    name: "Product Y",
-    amount: 95,
-  },
-  {
-    date: "2025-08-09",
-    name: "Product Z",
-    amount: 310,
-  },
-  {
-    date: "2025-08-10",
-    name: "Product AA",
-    amount: 80,
-  },
-  {
-    date: "2025-08-10",
-    name: "Product BB",
-    amount: 175,
-  },
-  {
-    date: "2025-08-11",
-    name: "Product CC",
-    amount: 140,
-  },
-  {
-    date: "2025-08-11",
-    name: "Product DD",
-    amount: 65,
-  },
-];
-
-// username : admin
-// password : bangOnlyNo1
+export const stockHeaders = ["Name", "Quantity"];

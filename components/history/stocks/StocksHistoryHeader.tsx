@@ -1,4 +1,4 @@
-const stocksHistoryHeaders = ["Date", "Name", "Amount", "Type"];
+const stocksHistoryHeaders = ["Date", "Name", "Quantity", "Type"];
 
 const StocksHistoryHeader = () => {
   return (

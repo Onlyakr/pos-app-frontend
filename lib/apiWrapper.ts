@@ -14,10 +14,10 @@ export const apiWrapper = async (input: RequestInfo, init?: RequestInit) => {
         ...init,
         credentials: "include",
       });
-      console.log("Unauthorized");
+      return res;
     } catch (error) {
       const e = error as Error;
-      console.log("Error: ", e.message);
+      console.error(e.message);
       redirect("/login");
     }
   }

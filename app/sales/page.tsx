@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ShoppingBag } from "lucide-react";
+
 import Link from "next/link";
 
 const SalesPage = () => {

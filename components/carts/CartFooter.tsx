@@ -3,61 +3,90 @@
 import { Button } from "@/components/ui/button";
 import { CircleCheck } from "lucide-react";
 import { CircleX } from "lucide-react";
-import { redirect } from "next/navigation";
 import { Input } from "../ui/input";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { getProductByBarcode } from "@/lib/products";
+import { useRouter } from "next/navigation";
+import { ProductProps } from "@/utils/data";
+import { cartsCheckout } from "@/lib/carts";
+import { toast } from "sonner";
+
+import useCarts from "@/store/cartsStore";
 
 const CartFooter = () => {
   const [barcode, setBarcode] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const barcodeRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const { carts, addProduct } = useCarts();
 
   useEffect(() => {
-    console.log(barcode);
+    const focus = () => barcodeRef.current?.focus();
+    focus();
+    window.addEventListener("click", focus);
+    return () => window.removeEventListener("click", focus);
+  }, []);
 
-    const handleFetch = async () => {
-      if (barcode.trim().length > 0) {
-        try {
-          const response = await fetch(`/api/products/${barcode}`);
-          const data = await response.json();
-          console.log(data);
-        } catch (error) {
-          console.error(error);
-        }
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.target as HTMLFormElement);
+    const barcode = formData.get("barcode") as string;
+    if (barcode && barcode.trim().length > 0) {
+      try {
+        setIsLoading(true);
+        const { product }: { product: ProductProps } =
+          await getProductByBarcode(barcode);
+
+        // Use the addProduct function which handles checking if product exists
+        // and either adds new product or increases quantity
+        addProduct(product);
+      } catch (error) {
+        console.error("Error adding product to cart:", error);
+      } finally {
+        setIsLoading(false);
+        setBarcode("");
       }
-    };
+    }
+  };
 
-    handleFetch();
-  }, [barcode]);
+  const handleConfirm = async () => {
+    console.log("Cart contents:", carts);
+    try {
+      const res = await cartsCheckout(carts);
+      console.log("Sale created:", res);
+      toast.success("Sale created successfully");
+    } catch (error) {
+      console.error("Error creating sale:", error);
+      toast.error("Error creating sale");
+    }
+    router.push("/carts/checkout");
+  };
 
   return (
-    <ul className="grid h-15 grid-cols-8 items-center justify-center gap-1">
-      <li className="bg-muted border-border col-span-2 flex items-center justify-center rounded-md border text-center">
+    <ul className="flex h-15 items-center justify-between gap-1">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-muted border-border flex items-center justify-center rounded-md border text-center"
+      >
         <Input
           type="text"
           placeholder="Barcode ID"
+          name="barcode"
           onChange={(e) => setBarcode(e.target.value)}
           value={barcode}
+          ref={barcodeRef}
         />
-      </li>
-      <li className="col-span-2 mr-auto">
-        <Button
-          className="border-border bg-muted text-foreground border hover:bg-green-500/90"
-          onClick={() => redirect("/carts/checkout")}
-        >
+      </form>
+
+      <li className="flex items-center justify-center gap-2">
+        <Button onClick={handleConfirm}>
           <CircleCheck />
           Confirm
         </Button>
-      </li>
-      <li className="col-span-2 ml-auto">
-        <Button
-          className="border-border bg-muted text-foreground border hover:bg-red-500"
-          onClick={() => redirect("/sales")}
-        >
+        <Button variant="destructive" onClick={() => router.push("/sales")}>
           <CircleX />
           Cancel
         </Button>
-      </li>
-      <li className="border-border bg-muted col-span-2 flex items-center justify-center rounded-md border p-2 text-center">
-        A1234567
       </li>
     </ul>
   );

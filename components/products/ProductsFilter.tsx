@@ -30,16 +30,22 @@ const ProductsFilter = () => {
   const handleChangeCategory = (value: string) => {
     const params = new URLSearchParams();
     if (value !== "all") params.set("category", value);
-    // if (search) params.set("search", search);
+    if (search) params.set("search", search);
     router.replace(`/products?${params.toString()}`);
   };
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const params = new URLSearchParams();
-    // if (category !== "all") params.set("category", category);
+    if (category !== "all") params.set("category", category);
     if (search !== "") params.set("search", search);
     router.replace(`/products?${params.toString()}`);
+  };
+
+  const handleClear = () => {
+    setCategory("all");
+    setSearch("");
+    router.replace(`/products`);
   };
 
   return (
@@ -60,7 +66,7 @@ const ProductsFilter = () => {
       <form className="flex flex-1 items-center gap-2" onSubmit={handleSearch}>
         <Input
           type="text"
-          placeholder="Search by barcode"
+          placeholder="Search by name"
           name="search"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
@@ -70,6 +76,10 @@ const ProductsFilter = () => {
           <SearchIcon />
         </Button>
       </form>
+
+      <Button variant="destructive" onClick={handleClear}>
+        Clear
+      </Button>
     </div>
   );
 };

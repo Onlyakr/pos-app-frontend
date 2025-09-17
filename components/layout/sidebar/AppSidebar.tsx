@@ -1,10 +1,5 @@
 "use client";
 
-import Logo from "@/components/Logo";
-import CashierMenu from "./CashierMenu";
-import ManagerMenu from "./ManagerMenu";
-import Role from "./Role";
-
 import {
   Sidebar,
   SidebarContent,
@@ -13,12 +8,18 @@ import {
   SidebarSeparator,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import useManager from "@/store/userStore";
 import { getManager } from "@/lib/users";
 import { useEffect, useState } from "react";
 
+import Logo from "@/components/Logo";
+import CashierMenu from "./CashierMenu";
+import ManagerMenu from "./ManagerMenu";
+import Role from "./Role";
+
 const AppSidebar = () => {
-  const [isManager, setIsManager] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const { isManager, setIsManager } = useManager();
 
   useEffect(() => {
     const fetchManager = async () => {
@@ -27,7 +28,7 @@ const AppSidebar = () => {
         const res = await getManager();
         setIsManager(res.status === 200);
       } catch (error) {
-        console.error("Failed to fetch manager");
+        setIsManager(false);
       } finally {
         setIsLoading(false);
       }
@@ -49,6 +50,7 @@ const AppSidebar = () => {
           </span>
         </div>
         <SidebarTrigger className="absolute top-0 right-2" />
+
         <Role isManager={isManager} />
       </SidebarHeader>
 

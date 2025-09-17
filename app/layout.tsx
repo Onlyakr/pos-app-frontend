@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Sans } from "next/font/google";
 import { Toaster } from "sonner";
-import Providers from "@/providers/Provider";
+import Providers from "@/components/providers/Provider";
 import "@/app/globals.css";
 
 const dmSans = DM_Sans({

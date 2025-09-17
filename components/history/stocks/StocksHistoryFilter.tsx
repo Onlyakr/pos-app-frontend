@@ -1,41 +1,53 @@
 "use client";
 
-import { CircleArrowLeft, SearchIcon } from "lucide-react";
+import { SearchIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-import Link from "next/link";
-import DatePicker from "@/components/promotions/DatePicker";
 import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+
+import DatePicker from "@/components/promotions/DatePicker";
 
 const StocksHistoryFilter = () => {
+  const [search, setSearch] = useState("");
+  const [date, setDate] = useState<Date | undefined>(undefined);
+
+  const router = useRouter();
+
+  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    if (search !== "") params.set("search", search);
+    if (date !== undefined)
+      params.set("date", date.toLocaleDateString("en-CA"));
+    router.replace(`/stocks/history?${params.toString()}`);
+  };
+
+  const handleClear = () => {
+    setSearch("");
+    setDate(undefined);
+    router.replace(`/stocks/history`);
+  };
   return (
     <div className="flex items-center justify-between gap-4">
-      <Button
-        className="bg-card text-foreground border-border hover:text-card size-9 rounded-full border transition-colors"
-        asChild
-      >
-        <Link href="/stocks">
-          <CircleArrowLeft />
-        </Link>
-      </Button>
+      <form className="flex flex-1 items-center gap-2" onSubmit={handleSearch}>
+        <Input
+          type="text"
+          placeholder="Search by name"
+          name="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
 
-      <div className="flex flex-1 items-center justify-center gap-2">
-        <div className="relative flex flex-1 items-center">
-          <SearchIcon size={18} className="absolute top-2 left-2" />
-          <Input
-            type="text"
-            placeholder="Product Name"
-            name="name"
-            className="pl-8"
-          />
-        </div>
+        <DatePicker date={date} setDate={setDate} />
 
-        <DatePicker />
-
-        <Button variant="outline" type="submit" className="size-9">
-          <SearchIcon size={18} />
+        <Button variant="outline" type="submit">
+          <SearchIcon />
         </Button>
-      </div>
+        <Button variant="destructive" onClick={handleClear}>
+          Clear
+        </Button>
+      </form>
     </div>
   );
 };

@@ -4,7 +4,6 @@ import { CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import {
   Popover,
   PopoverContent,
@@ -17,9 +16,9 @@ function formatDate(date: Date | undefined) {
     return "";
   }
 
-  return date.toLocaleDateString("en-US", {
+  return date.toLocaleDateString("en-CA", {
     day: "2-digit",
-    month: "long",
+    month: "2-digit",
     year: "numeric",
   });
 }
@@ -31,9 +30,14 @@ function isValidDate(date: Date | undefined) {
   return !isNaN(date.getTime());
 }
 
-const DatePicker = () => {
+const DatePicker = ({
+  date,
+  setDate,
+}: {
+  date: Date | undefined;
+  setDate: (date: Date | undefined) => void;
+}) => {
   const [open, setOpen] = useState(false);
-  const [date, setDate] = useState<Date | undefined>(new Date());
   const [month, setMonth] = useState<Date | undefined>(date);
   const [value, setValue] = useState(formatDate(date));
 
@@ -44,6 +48,7 @@ const DatePicker = () => {
           id="date"
           value={value}
           name="date"
+          placeholder="Select date"
           className="pr-10"
           onChange={(e) => {
             const date = new Date(e.target.value);
