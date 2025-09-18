@@ -1,5 +1,5 @@
-import { PromotionProps } from "@/utils/data";
 import { apiWrapper } from "./apiWrapper";
+import { PromotionProps } from "@/types";
 
 export const createPromotion = async (data: PromotionProps) => {
   const res = await apiWrapper(

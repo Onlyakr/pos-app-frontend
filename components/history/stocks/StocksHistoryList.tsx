@@ -1,6 +1,37 @@
-import { StockProps } from "@/utils/data";
+"use client";
 
-const StocksHistoryList = async ({ stocks }: { stocks: StockProps[] }) => {
+import { StockProps } from "@/types";
+import { getStocksHistory } from "@/lib/stock";
+import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
+
+const StocksHistoryList = ({
+  search,
+  date,
+}: {
+  search: string;
+  date: string;
+}) => {
+  const [stocks, setStocks] = useState<StockProps[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  useEffect(() => {
+    const fetchStocks = async () => {
+      try {
+        setLoading(true);
+        const { data: stocks } = await getStocksHistory(search, date);
+        setStocks(stocks);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStocks();
+  }, [search, date]);
+
+  if (loading) return <Loader2 className="w-full animate-spin" />;
+
   return (
     <div className="flex flex-col gap-1 overflow-auto">
       {stocks.map((stock: StockProps, i: number) => (

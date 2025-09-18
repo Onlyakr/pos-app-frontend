@@ -1,17 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import { getProductsInfo } from "@/lib/products";
-import { CircleArrowLeft } from "lucide-react";
+import { getProductsInfo } from "@/lib/product";
 
-import Link from "next/link";
-
-export type CartsProps = {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-  barcode: string;
-};
+import GoBackButton from "@/components/GoBackButton";
 
 const ProductDetailsPage = async ({
   params,
@@ -30,15 +19,7 @@ const ProductDetailsPage = async ({
 
   return (
     <div className="bg-muted relative flex size-full flex-col gap-6 px-5 py-10 md:items-center md:justify-center md:gap-10">
-      <Button
-        size="icon"
-        className="bg-card text-foreground border-border hover:text-card absolute top-2 left-2 size-7 rounded-full border transition-colors"
-        asChild
-      >
-        <Link href="/products">
-          <CircleArrowLeft />
-        </Link>
-      </Button>
+      <GoBackButton className="absolute top-2 left-2" />
 
       <div className="flex items-center justify-start gap-10">
         <p className="font-semibold md:text-xl">ID : {product.id}</p>

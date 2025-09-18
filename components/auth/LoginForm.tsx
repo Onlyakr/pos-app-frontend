@@ -22,10 +22,19 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { loginFormSchema } from "@/schemas/authSchema";
 import { loginUser } from "@/lib/users";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+
+export const loginFormSchema = z.object({
+  username: z
+    .string()
+    .min(4, { error: "Username must be at least 4 characters" })
+    .max(50, { error: "Username must be less than 50 characters" }),
+  password: z
+    .string()
+    .min(8, { error: "Password must be at least 8 characters" }),
+});
 
 export default function LoginForm() {
   const [isLoading, setIsLoading] = useState(false);
@@ -79,7 +88,7 @@ export default function LoginForm() {
                       <Input
                         id="username"
                         type="text"
-                        placeholder="Punchrakmeow"
+                        placeholder="John Mayer"
                         required
                         {...field}
                       />
@@ -109,7 +118,7 @@ export default function LoginForm() {
               />
               <Button
                 type="submit"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full cursor-pointer"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full"
                 disabled={isLoading}
               >
                 {isLoading ? (

@@ -1,8 +1,8 @@
+import { ProductProps } from "@/types";
+
 import Link from "next/link";
 
-import { ProductProps } from "@/utils/data";
-
-const ProductsList = async ({ products }: { products: ProductProps[] }) => {
+const ProductsList = ({ products }: { products: ProductProps[] }) => {
   return (
     <div className="flex flex-col gap-1 overflow-auto">
       {products.map((product: ProductProps) => (

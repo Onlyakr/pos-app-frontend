@@ -3,16 +3,19 @@
 import { SearchIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "../ui/input";
 
 import AddPromotionButton from "./AddPromotionButton";
 import DatePicker from "./DatePicker";
+import GoBackButton from "../GoBackButton";
 
 const PromotionFilter = () => {
-  const [search, setSearch] = useState("");
-  const [date, setDate] = useState<Date | undefined>(undefined);
-
+  const searchParams = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [date, setDate] = useState<Date | undefined>(
+    searchParams.get("date") ? new Date(searchParams.get("date")!) : undefined,
+  );
   const router = useRouter();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,10 +30,12 @@ const PromotionFilter = () => {
   const handleClear = () => {
     setSearch("");
     setDate(undefined);
-    router.replace(`/promotions`);
+    window.location.href = "/promotions";
   };
   return (
     <div className="flex items-center justify-between gap-4">
+      <GoBackButton />
+
       <form className="flex flex-1 items-center gap-2" onSubmit={handleSearch}>
         <Input
           type="text"

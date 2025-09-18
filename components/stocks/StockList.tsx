@@ -1,8 +1,33 @@
-import { StockProps } from "@/utils/data";
+"use client";
 
-import EditStock from "./EditStock";
+import { useState, useEffect } from "react";
+import { Loader2 } from "lucide-react";
+import { getProducts } from "@/lib/product";
+import { StockProps } from "@/types";
 
-const StockList = async ({ stocks }: { stocks: StockProps[] }) => {
+import EditStockModal from "./EditStockModal";
+
+const StockList = ({ search }: { search: string }) => {
+  const [stocks, setStocks] = useState<StockProps[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchStocks = async () => {
+      try {
+        setLoading(true);
+        const { products: stocks } = await getProducts(undefined, search);
+        setStocks(stocks);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStocks();
+  }, [search]);
+
+  if (loading) return <Loader2 className="w-full animate-spin" />;
+
   return (
     <div className="flex flex-col gap-1 overflow-auto">
       {stocks.map((stock: StockProps) => (
@@ -17,7 +42,7 @@ const StockList = async ({ stocks }: { stocks: StockProps[] }) => {
             {stock.quantity}
           </li>
 
-          <EditStock stock={stock} />
+          <EditStockModal stock={stock} />
         </ul>
       ))}
     </div>

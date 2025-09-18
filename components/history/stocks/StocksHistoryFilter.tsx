@@ -4,13 +4,17 @@ import { SearchIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import DatePicker from "@/components/promotions/DatePicker";
+import GoBackButton from "@/components/GoBackButton";
 
 const StocksHistoryFilter = () => {
-  const [search, setSearch] = useState("");
-  const [date, setDate] = useState<Date | undefined>(undefined);
+  const searchParams = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get("search") || "");
+  const [date, setDate] = useState<Date | undefined>(
+    searchParams.get("date") ? new Date(searchParams.get("date")!) : undefined,
+  );
 
   const router = useRouter();
 
@@ -26,10 +30,11 @@ const StocksHistoryFilter = () => {
   const handleClear = () => {
     setSearch("");
     setDate(undefined);
-    router.replace(`/stocks/history`);
+    window.location.href = "/stocks/history";
   };
   return (
     <div className="flex items-center justify-between gap-4">
+      <GoBackButton />
       <form className="flex flex-1 items-center gap-2" onSubmit={handleSearch}>
         <Input
           type="text"

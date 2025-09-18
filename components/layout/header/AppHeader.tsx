@@ -2,7 +2,7 @@
 
 import Path from "./Path";
 import PromotionButton from "@/components/promotions/PromotionButton";
-import HistoryButton from "@/components/carts/HistoryButton";
+import HistoryButton from "@/components/cart/HistoryButton";
 import Logo from "@/components/Logo";
 import LogoutButton from "@/components/auth/LogoutButton";
 import useManager from "@/store/userStore";

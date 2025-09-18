@@ -4,12 +4,14 @@ import { Button } from "../ui/button";
 import { SearchIcon } from "lucide-react";
 import { Input } from "../ui/input";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import Link from "next/link";
+import GoBackButton from "../GoBackButton";
 
 const StockFilter = () => {
-  const [search, setSearch] = useState("");
+  const searchParams = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get("search") || "");
   const router = useRouter();
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
@@ -26,6 +28,7 @@ const StockFilter = () => {
 
   return (
     <div className="flex items-center gap-2">
+      <GoBackButton />
       <form className="flex flex-1 items-center gap-2" onSubmit={handleSearch}>
         <Input
           type="text"

@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/sidebar";
 import useManager from "@/store/userStore";
 import { getManager } from "@/lib/users";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Logo from "@/components/Logo";
 import CashierMenu from "./CashierMenu";
@@ -18,19 +18,15 @@ import ManagerMenu from "./ManagerMenu";
 import Role from "./Role";
 
 const AppSidebar = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const { isManager, setIsManager } = useManager();
 
   useEffect(() => {
     const fetchManager = async () => {
       try {
-        setIsLoading(true);
         const res = await getManager();
         setIsManager(res.status === 200);
       } catch (error) {
         setIsManager(false);
-      } finally {
-        setIsLoading(false);
       }
     };
     fetchManager();

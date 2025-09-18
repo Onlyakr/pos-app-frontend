@@ -10,24 +10,22 @@ import {
 import { Button } from "../ui/button";
 import { SearchIcon } from "lucide-react";
 import { Input } from "../ui/input";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import GoBackButton from "../GoBackButton";
+
 const ProductsFilter = () => {
-  const [category, setCategory] = useState("all");
-  const [search, setSearch] = useState("");
+  const searchParams = useSearchParams();
+  const [category, setCategory] = useState(
+    searchParams.get("category") || "all",
+  );
+  const [search, setSearch] = useState(searchParams.get("search") || "");
 
   const router = useRouter();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const categoryParam = searchParams.get("category");
-    const searchParam = searchParams.get("search");
-    setCategory(categoryParam || "all");
-    setSearch(searchParam || "");
-  }, [searchParams]);
 
   const handleChangeCategory = (value: string) => {
+    setCategory(value);
     const params = new URLSearchParams();
     if (value !== "all") params.set("category", value);
     if (search) params.set("search", search);
@@ -50,6 +48,8 @@ const ProductsFilter = () => {
 
   return (
     <div className="flex items-center justify-between gap-2">
+      <GoBackButton />
+
       <Select value={category} onValueChange={handleChangeCategory}>
         <SelectTrigger className="w-40">
           <SelectValue placeholder="Select category" />
