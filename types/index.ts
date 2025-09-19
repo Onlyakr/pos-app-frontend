@@ -57,3 +57,9 @@ export type OrderProps = {
   quantity: number;
   price: string;
 };
+
+export type OrderHistoryProps = {
+  id: number;
+  date: string;
+  receiptId: string;
+};

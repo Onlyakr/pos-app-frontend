@@ -1,4 +1,4 @@
-import { loginFormSchema } from "@/schemas/authSchema";
+import { loginFormSchema } from "@/components/auth/LoginForm";
 import { z } from "zod";
 import { apiWrapper } from "./apiWrapper";
 

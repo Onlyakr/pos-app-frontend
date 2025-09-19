@@ -26,7 +26,6 @@ import { StockProps } from "@/types";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "../ui/form";
 import { updateStock } from "@/lib/stock";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { deleteProduct } from "@/lib/product";
 
 const formSchema = z.object({
@@ -37,7 +36,6 @@ const formSchema = z.object({
 const EditStockModal = ({ stock }: { stock: StockProps }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),

@@ -10,16 +10,26 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import useCart from "@/store/cartStore";
-import Link from "next/link";
 
 const CartCheckoutPage = () => {
+  const receiptRef = useRef<HTMLTableElement>(null);
   const { receipt } = useCart();
+  const router = useRouter();
+
+  const handlePrint = useReactToPrint({
+    contentRef: receiptRef,
+    onAfterPrint: () => router.push("/sales"),
+  });
 
   return (
     <div className="flex max-h-[calc(100vh-100px)] w-full flex-col items-center justify-center gap-4 p-4 text-sm font-medium">
-      <Table>
+      <Table ref={receiptRef}>
         <TableHeader>
           <TableRow>
             <TableHead>Name</TableHead>
@@ -52,13 +62,9 @@ const CartCheckoutPage = () => {
       </Table>
 
       <div className="flex gap-2">
-        <Button asChild>
-          <Link href="/print" replace>
-            Print Receipt
-          </Link>
-        </Button>
+        <Button onClick={handlePrint}>Print Receipt</Button>
         <Button variant="destructive" asChild>
-          <Link href="/cart" replace>
+          <Link href="/sales" replace>
             Cancel
           </Link>
         </Button>

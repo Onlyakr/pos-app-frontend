@@ -26,11 +26,12 @@ const AppSidebar = () => {
         const res = await getManager();
         setIsManager(res.status === 200);
       } catch (error) {
+        console.error("Error fetching manager", error);
         setIsManager(false);
       }
     };
     fetchManager();
-  }, []);
+  }, [setIsManager]);
 
   return (
     <Sidebar
