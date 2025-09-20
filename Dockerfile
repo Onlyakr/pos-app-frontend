@@ -5,10 +5,6 @@ WORKDIR /app
 # Install pnpm
 RUN npm install -g pnpm
 
-# Accept build arguments
-ARG NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
-
 # Install dependencies
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
