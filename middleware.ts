@@ -49,6 +49,31 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  const managerProtectedRoutes = ["/stocks", "/dashboard", "/promotions"];
+
+  const isManagerProtectedRoute = managerProtectedRoutes.some((route) =>
+    url.pathname.startsWith(route),
+  );
+
+  if (isManagerProtectedRoute) {
+    if (!accessToken) {
+      url.pathname = "/login";
+      return NextResponse.redirect(url);
+    }
+
+    const { payload, isExpired } = decodeJwt(accessToken as string);
+
+    if (!payload || isExpired) {
+      url.pathname = "/login";
+      return NextResponse.redirect(url);
+    }
+
+    if (payload.role !== "manager") {
+      url.pathname = "/products";
+      return NextResponse.redirect(url);
+    }
+  }
+
   return NextResponse.next();
 }
 

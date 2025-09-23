@@ -17,6 +17,7 @@ export type ProductProps = {
   name: string;
   author: string;
   price: number;
+  discountPrice?: number;
   barcode?: string;
   quantity?: number;
   category?: "Anime" | "Self-development" | "Finance" | "Education";
@@ -33,6 +34,8 @@ export type PromotionProps = {
   quota?: number;
   remainingQuota?: number;
 };
+
+export type ProductInfoProps = ProductProps & PromotionProps;
 
 export type CartProps = {
   id: string;

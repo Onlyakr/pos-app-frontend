@@ -8,7 +8,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardHeader,
+} from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
@@ -63,6 +68,9 @@ export default function ChartBarMultiple({
             <SelectItem value="Year">Year</SelectItem>
           </SelectContent>
         </Select>
+        <CardAction className="flex h-full items-center justify-center text-base font-medium">
+          <p>Sales</p>
+        </CardAction>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>

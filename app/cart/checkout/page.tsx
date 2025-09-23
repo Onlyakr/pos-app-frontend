@@ -15,7 +15,6 @@ import { useReactToPrint } from "react-to-print";
 import { useRouter } from "next/navigation";
 
 import Link from "next/link";
-
 import useCart from "@/store/cartStore";
 
 const CartCheckoutPage = () => {

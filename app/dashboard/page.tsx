@@ -1,10 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { Coins, BookA, ReceiptText, Wallet } from "lucide-react";
+
 import AppLayout from "@/components/layout/AppLayout";
 import BarChart from "@/components/dashboard/BarChart";
 import AreaChart from "@/components/dashboard/AreaChart";
-import { useEffect, useState } from "react";
-import { Coins, BookA, ReceiptText, Wallet } from "lucide-react";
 
 export interface MonthYear {
   month: {
@@ -189,6 +190,7 @@ const DashboardPage = () => {
       try {
         const before7Res = await fetch(
           backend + "/dashboard/7day/" + graphType,
+          { credentials: "include" },
         );
 
         if (!before7Res.ok) {

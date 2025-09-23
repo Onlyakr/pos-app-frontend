@@ -1,8 +1,40 @@
+"use client";
+
+import { getProducts } from "@/lib/product";
 import { ProductProps } from "@/types";
+import { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 
 import Link from "next/link";
 
-const ProductsList = ({ products }: { products: ProductProps[] }) => {
+const ProductsList = ({
+  search,
+  category,
+}: {
+  search: string;
+  category: ProductProps["category"];
+}) => {
+  const [products, setProducts] = useState<ProductProps[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const { products } = await getProducts(category, search);
+        setProducts(products);
+      } catch (error) {
+        console.error(error);
+        setProducts([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, [category, search]);
+
+  if (loading) return <Loader2 className="w-full animate-spin" />;
+
   return (
     <div className="flex flex-col gap-1 overflow-auto">
       {products.map((product: ProductProps) => (
