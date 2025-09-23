@@ -1,31 +1,29 @@
 "use client";
 
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
-
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  ResponsiveContainer,
+} from "recharts";
+
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export const description = "A multiple bar chart";
-
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
 
 const chartConfig = {
   desktop: {
@@ -40,33 +38,59 @@ const chartConfig = {
 
 export default function ChartBarMultiple({
   className,
+  graphType = "Day",
+  setGraphType,
+  chartData,
 }: {
   className?: string;
+  graphType: string;
+  setGraphType: (graphType: string) => void;
+  chartData: {
+    date: string;
+    value: number;
+  }[];
 }) {
   return (
     <Card className={className}>
       <CardHeader>
-        <CardTitle>Bar Chart - Multiple</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
+        <Select value={graphType} onValueChange={setGraphType}>
+          <SelectTrigger className="w-fit min-w-[80px]">
+            <SelectValue placeholder="Theme" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Day">Day</SelectItem>
+            <SelectItem value="Month">Month</SelectItem>
+            <SelectItem value="Year">Year</SelectItem>
+          </SelectContent>
+        </Select>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="month"
-              tickLine={false}
-              tickMargin={10}
-              axisLine={false}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dashed" />}
-            />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
-          </BarChart>
+          <ResponsiveContainer width="100%" height="100%">
+            <BarChart accessibilityLayer data={chartData}>
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="date"
+                tickLine={false}
+                tickMargin={10}
+                axisLine={false}
+                tickFormatter={(value) => {
+                  if (graphType === "Year") {
+                    return value.slice(-2);
+                  }
+                  if (graphType === "Month") {
+                    return value.slice(0, 3);
+                  }
+                  return value;
+                }}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="dashed" />}
+              />
+              <Bar dataKey="value" fill="var(--color-desktop)" radius={4} />
+            </BarChart>
+          </ResponsiveContainer>
         </ChartContainer>
       </CardContent>
     </Card>

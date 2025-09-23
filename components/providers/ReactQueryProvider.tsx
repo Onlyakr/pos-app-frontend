@@ -2,6 +2,7 @@
 
 import { getAccessToken } from "@/lib/users";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function ReactQueryProvider({
@@ -9,12 +10,14 @@ export default function ReactQueryProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const router = useRouter();
+
   const [queryClient] = useState(
     () =>
       new QueryClient({
         defaultOptions: {
           queries: {
-            refetchOnWindowFocus: false,
+            refetchOnWindowFocus: true,
             retry: false,
           },
         },
@@ -30,6 +33,8 @@ export default function ReactQueryProvider({
         } catch (error) {
           const e = error as Error;
           console.error("Failed to refresh token", e.message);
+        } finally {
+          router.refresh();
         }
       },
       1000 * 60 * 0.5,

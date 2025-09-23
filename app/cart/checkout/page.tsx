@@ -13,7 +13,6 @@ import {
 import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useRouter } from "next/navigation";
-import { Separator } from "@/components/ui/separator";
 
 import Link from "next/link";
 
@@ -23,7 +22,6 @@ const CartCheckoutPage = () => {
   const receiptRef = useRef<HTMLTableElement>(null);
   const { receipt } = useCart();
 
-  console.log(receipt);
   const router = useRouter();
 
   const handlePrint = useReactToPrint({
