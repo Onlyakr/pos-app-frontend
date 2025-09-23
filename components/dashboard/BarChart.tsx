@@ -73,7 +73,7 @@ export default function ChartBarMultiple({
         </CardAction>
       </CardHeader>
       <CardContent>
-        <ChartContainer config={chartConfig}>
+        <ChartContainer config={chartConfig} className="mt-10">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart accessibilityLayer data={chartData}>
               <CartesianGrid vertical={false} />

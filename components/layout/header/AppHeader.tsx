@@ -33,15 +33,12 @@ const AppHeader = () => {
 
       <div className="flex items-center justify-end gap-5">
         {isManager && (
-          <>
-            {pathname.split("/")[1] === "products" && <PromotionButton />}
-            {pathname.split("/")[1] === "sales" && !pathname.split("/")[2] && (
-              <HistoryButton />
-            )}
-          </>
+          <>{pathname.split("/")[1] === "products" && <PromotionButton />}</>
         )}
-        {/* {pathname.split("/")[1] === " sales" && <ProductButton />} */}
         <ModeToggle />
+        {pathname.split("/")[1] === "sales" && !pathname.split("/")[2] && (
+          <HistoryButton />
+        )}
       </div>
 
       <LogoutButton />
